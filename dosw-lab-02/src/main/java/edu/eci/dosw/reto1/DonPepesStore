@@ -1,0 +1,10 @@
+public final class DonPepesStore {
+
+    private DonPepesStore() {
+    }
+
+    public static void run() {
+        System.out.println("Running Challenge 1 — Don Pepe's Store...");
+        // Challenge execution logic
+    }
+}
