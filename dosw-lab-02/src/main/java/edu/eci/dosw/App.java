@@ -1,11 +1,8 @@
 package edu.eci.dosw;
+import edu.eci.dosw.reto1.DonPepesStore;
 
-/**
- * Hello world!
- * test
- */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        DonPepesStore.run();
     }
 }

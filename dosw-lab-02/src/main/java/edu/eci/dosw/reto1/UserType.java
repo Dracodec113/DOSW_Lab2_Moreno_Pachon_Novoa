@@ -1,4 +1,6 @@
+package edu.eci.dosw.reto1;
+
 public enum UserType{
-    NewUser,
-    FrequentUser
+    New,
+    Frequent
 }
