@@ -2,11 +2,11 @@ package edu.eci.dosw.reto6;
 
 public abstract class TechnicianHandler {
     private final String name;
-    private final String specialty;
+    private final Difficulty specialty;
     private final Priority maxPriority;
     private TechnicianHandler next;
 
-    protected TechnicianHandler(String name, String specialty, Priority maxPriority) {
+    protected TechnicianHandler(String name, Difficulty specialty, Priority maxPriority) {
         this.name = name;
         this.specialty = specialty;
         this.maxPriority = maxPriority;
@@ -17,6 +17,8 @@ public abstract class TechnicianHandler {
     }
 
     public void handle(Ticket ticket) {
+        ticket.addTechnicianVisited(this.name);
+        
         if (canHandle(ticket)) {
             ticket.markResolved(this.name);
         } else if (next != null) {
@@ -25,9 +27,23 @@ public abstract class TechnicianHandler {
     }
 
     protected boolean canHandle(Ticket ticket) {
-        return ticket.getPriority().level() <= this.maxPriority.level();
+
+    boolean difficultyAllowed =
+            ticket.getDifficulty().level()
+            <= this.specialty.level();
+
+    boolean priorityAllowed =
+            ticket.getPriority().level()
+            <= this.maxPriority.level();
+
+    return difficultyAllowed && priorityAllowed;
     }
 
-    public String getName() { return name; }
-    public String getSpecialty() { return specialty; }
+    public String getName() { 
+        return name; 
+    }
+
+    public Difficulty getSpecialty() { 
+        return specialty; 
+    }
 }
