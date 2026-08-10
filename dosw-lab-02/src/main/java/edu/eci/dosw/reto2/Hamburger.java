@@ -1,10 +1,11 @@
 package edu.eci.dosw.reto2;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Hamburger {
 
-    private List<Ingredient> ingredients;
+    private final List<Ingredient> ingredients;
 
     public Hamburger(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
@@ -15,10 +16,17 @@ public class Hamburger {
     }
 
     public double calculatePrice() {
-        return 0;
+        return ingredients.stream()
+                .mapToDouble(Ingredient::getPrice)
+                .sum();
     }
 
     public String getSummary() {
-        return "";
+        String names = ingredients.stream()
+                .map(Ingredient::getName)
+                .collect(Collectors.joining(", "));
+
+        return "Hamburguesa personalizada con: " + names +
+                "---Precio total: COP " + calculatePrice();
     }
 }
