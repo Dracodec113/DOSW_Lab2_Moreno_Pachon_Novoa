@@ -25,4 +25,5 @@ public final class Challenge_2_run {
         System.out.println(classic.getSummary());
         System.out.println(gourmet.getSummary());
     }
+
 }
