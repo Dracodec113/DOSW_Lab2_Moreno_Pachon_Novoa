@@ -5,7 +5,7 @@ public final class Challenge_2_run {
     private Challenge_2_run() {}
 
     public static void run() {
-        System.out.println("Running Challenge 2 — Five-Star Chef...");
+        System.out.println("Running Challenge 2 - Five-Star Chef...");
 
         Hamburger classic = new HamburgerBuilder()
                 .addIngredient(new Ingredient("Pan brioche", 2000, IngredientCategory.BREAD))

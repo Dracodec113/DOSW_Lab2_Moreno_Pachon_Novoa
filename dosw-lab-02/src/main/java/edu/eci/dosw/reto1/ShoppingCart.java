@@ -36,13 +36,13 @@ public class ShoppingCart {
     private Receipt generateReceipt() {
         calculateTotal();
         this.receipt = new Receipt(subtotal, discount, total);
-        System.out.println(receipt.receiptCreation());
         return receipt;
     }
 
-    public void checkout() {
-        generateReceipt();
+    public Receipt checkout() {
+        receipt = generateReceipt();
         this.items.clear();
+        return receipt;
     }
 
     public double getSubtotal() {
