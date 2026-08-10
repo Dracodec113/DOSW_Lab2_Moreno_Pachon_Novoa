@@ -1,23 +1,23 @@
 package edu.eci.dosw.reto5;
 
-public class CustomIngredientDecorator extends CoffeDecorator {
+public class CustomIngredientDecorator extends CoffeeDecorator {
 
     private String name;
     private double price;
 
-    public CustomIngredientDecorator(Coffe coffe, String name, double price){
-        super(coffe);
+    public CustomIngredientDecorator(Coffee coffee, String name, double price){
+        super(coffee);
         this.name = name;
         this.price = price;
     }
 
     @Override
     public String getDescription(){
-        return coffe.getDescription() + ", " + name;
+        return coffee.getDescription() + ", " + name;
     }
 
     @Override
     public double getPrice(){
-        return coffe.getprice() + ", " + price;
+        return coffee.getPrice() + price;
     }
 }

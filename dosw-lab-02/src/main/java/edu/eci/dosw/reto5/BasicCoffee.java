@@ -1,10 +1,10 @@
 package edu.eci.dosw.reto5;
 
-public class BasicCoffe implements Coffe {
+public class BasicCoffee implements Coffee {
     private String description;
     private double price; 
 
-    public BasicCoffe(String description, double price){
+    public BasicCoffee(String description, double price){
         this.description = description;
         this.price = price; 
     }

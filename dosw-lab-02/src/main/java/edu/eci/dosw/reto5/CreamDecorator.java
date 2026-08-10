@@ -1,18 +1,18 @@
 package edu.eci.dosw.reto5;
 
-public class CreamDecorator extends CoffeDecorator{
+public class CreamDecorator extends CoffeeDecorator{
 
-    public CreamDecorator(Coffe coffe){
-        super(coffe);
+    public CreamDecorator(Coffee coffee){
+        super(coffee);
     }
 
     @Override
     public String getDescription(){
-        return coffe.getDescription() + ", Cream";
+        return coffee.getDescription() + ", Cream";
     }
 
     @Override
     public double getPrice(){
-        return coffe.getPrice() + ", 2000";
+        return coffee.getPrice() + 2000;
     }
 }

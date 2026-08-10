@@ -1,6 +1,6 @@
 package edu.eci.dosw.reto5;
 
-public interface Coffe {
+public interface Coffee {
 
     String getDescription();
 
