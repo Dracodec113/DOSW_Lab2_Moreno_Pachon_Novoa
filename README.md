@@ -52,8 +52,8 @@
 We experimented with `records`. Thus `Product` and `CartItem` automatically generates encapsulated attributes, then each attribute that's needed has its own getter and/or setter. `ShoppingCart` for example is only exposed through controlled methods.
 
 ### Evidence
-### TO DO
-![Evidence challenge 1](images/evidenceC1.webp)
+
+![Evidence challenge 1](images/evidenceC1.png)
 
 ---
 
@@ -112,8 +112,8 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 | How It Was Applied | Basically `ExchangeRate` is our interface and `ExchangeRateMap` is our concrete strategy. Finally, through `CurrencyConverter` (the context) the strategy is received and the concrete implementations is never revealed. |
 
 ### Evidence
-### TO DO
-![Evidence challenge 4](images/evidenceC4.webp)
+
+![Evidence challenge 4](images/evidenceC4.png)
 
 ### Important Note
 
@@ -162,7 +162,7 @@ The output should identify:
 
 ### Evidence
 
-![Evidence challenge 6](images/evidenceC6.webp)
+![Evidence challenge 6](images/evidenceC6.png)
 
 ---
 
