@@ -1,36 +1,62 @@
-import java.util.Locale.Category;
+package edu.eci.dosw.reto3;
 
-/**
- * Vehicle class that implements that includes all the vehicles features and the 
- * needed methods to obtain its information.
- */
+import java.util.List;
 
-public class Vehicle{
-    ///Type.Category.Maximum speed.Price.Special equipment.
-    private Category category;
-    private FamilyType family;
+public class Vehicle {
+
+    private String family;
+    private String category;
     private String model;
     private double maxSpeed;
     private double price;
     private List<String> equipment;
 
-    public String getFamily(){
-        return this.family;
+    public Vehicle(
+            String family,
+            String category,
+            String model,
+            double maxSpeed,
+            double price,
+            List<String> equipment) {
+
+        this.family = family;
+        this.category = category;
+        this.model = model;
+        this.maxSpeed = maxSpeed;
+        this.price = price;
+        this.equipment = equipment;
     }
 
-    public Category getCategory(){
-        return this.category;
+    public String getFamily() {
+        return family;
     }
 
-    public double getMaxSpeed(){
-        return this.maxSpeed;
+    public String getCategory() {
+        return category;
     }
 
-    public double getPrice(){
-        return this.price;
+    public String getModel() {
+        return model;
     }
 
-    public String getSpecialEquipment(){
-        return this.category.getExtraEquipment().toString();
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public List<String> getEquipment() {
+        return equipment;
+    }
+
+    public String getSummary() {
+        return "Model: " + model
+                + " | Family: " + family
+                + " | Category: " + category
+                + " | Max speed: " + maxSpeed
+                + " | Price: " + price
+                + " | Equipment: " + equipment;
     }
 }

@@ -1,40 +1,46 @@
+package edu.eci.dosw.reto3;
+
 import java.util.List;
 
-/**
- * Enumerator that defines the actual possible categories for the
- *  vehicles and its features
- */
+public class Category {
 
-public enum Category{
-    ECONOMY(1.0, "Standard", List.of("Air-conditioning", "GPS"), 1.1),
-    LUXURY(1.6, "High", List.of("FM/AM Radio", "Digital Screen", "Advanced GPS"), 1.4),
-    USED(0.8, "Basic", List.of("FM Radio"), 0.8);
-
+    private String name;
     private double pricePercentage;
     private String comfortLevel;
     private List<String> extraEquipment;
     private double speedPercentage;
 
-    private Category(double pricePercentage, String comfortLevel, List<String> extraEquipment, double speedPercentage){
+    public Category(
+            String name,
+            double pricePercentage,
+            String comfortLevel,
+            List<String> extraEquipment,
+            double speedPercentage) {
+
+        this.name = name;
         this.pricePercentage = pricePercentage;
         this.comfortLevel = comfortLevel;
         this.extraEquipment = extraEquipment;
         this.speedPercentage = speedPercentage;
     }
 
-    public double calculatePrice(double iniPrice){
-        return iniPrice * this.pricePercentage;
+    public double calculatePrice(double basePrice) {
+        return basePrice * pricePercentage;
     }
 
-    public double calculateMaxSpeed(double iniMaxSpeed){
-        return iniMaxSpeed * this.speedPercentage;
+    public double calculateMaxSpeed(double baseSpeed) {
+    return Math.round(baseSpeed * speedPercentage);
     }
 
-    public String getComfortLevel(){
-        return this.comfortLevel();
+    public String getName() {
+        return name;
     }
 
-    public List<String> getExtraEquipment(){
-        return this.extraEquipment;
+    public String getComfortLevel() {
+        return comfortLevel;
+    }
+
+    public List<String> getExtraEquipment() {
+        return extraEquipment;
     }
 }

@@ -1,100 +1,114 @@
-import java.util.Locale.Category;
+package edu.eci.dosw.reto3;
 
-/**
- * Class that defines how to construct the vehicle
- */
+public class VehicleDirector {
 
-public class VehicleDirector{
-    public Vehicle createVehicle(String family, String model, String category){
-        VehicleBuilder builder1 = new VehicleBuilder()
-            .setModel(model);
-        
+    public Vehicle createVehicle(String family, String category, String model) {
+
+        VehicleBuilder builder = new VehicleBuilder();
+
         switch (family.toUpperCase()) {
             case "LAND":
-                builder1.setFamily(FamilyType.LAND);
+                builder.setFamily("Land");
                 break;
-            case "AIR":
-                builder1.setFamily(FamilyType.AIR);
-                break;
+
             case "WATER":
-                builder1.setFamily(FamilyType.WATER);
+                builder.setFamily("Water");
                 break;
+
+            case "AIR":
+                builder.setFamily("Air");
+                break;
+
             default:
-                builder1.setFamily(FamilyType.LAND);
-                break;
+                throw new IllegalArgumentException("Invalid family");
         }
 
-        switch (Category.toUpperCase()) {
+        switch (category.toUpperCase()) {
             case "ECONOMY":
-                builder1.setCategory(Category.ECONOMY);
+                builder.setCategory("Economy");
                 break;
-            case "LUXURY":
-                builder1.setCategory(Category.LUXURY);
-                break;
-            case "USED":
-                builder1.setCategory(Category.USED);
-                break;
-            default:
-                builder1.setCategory(Category.ECONOMY);
-                break;
-        }
 
+            case "LUXURY":
+                builder.setCategory("Luxury");
+                break;
+
+            case "USED":
+                builder.setCategory("Used");
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid category");
+        }
 
         switch (model.toUpperCase()) {
-            case "CAR": 
-                builder.setMaxSpeed(180)
-                    .setBasePrice(20000.0)
-                    .addEquipment("Clean Glasses");
+
+            case "CAR":
+                builder.setModel("Car")
+                       .setMaxSpeed(180)
+                       .setBasePrice(20000)
+                       .addEquipment("Air conditioning");
                 break;
+
             case "BICYCLE":
-                builder.setMaxSpeed(30)
-                    .setBasePrice(400.0)
-                    .addEquipment("Replacement chair");
+                builder.setModel("Bicycle")
+                       .setMaxSpeed(30)
+                       .setBasePrice(400)
+                       .addEquipment("Helmet");
                 break;
+
             case "MOTORCYCLE":
-                builder.setMaxSpeed(140)
-                    .setBasePrice(8000.0)
-                    .addEquipment("Safe-deposit box");
+                builder.setModel("Motorcycle")
+                       .setMaxSpeed(140)
+                       .setBasePrice(8000)
+                       .addEquipment("Safety equipment");
                 break;
+
             case "MOTORBOAT":
-                builder.setMaxSpeed(70)
-                    .setBasePrice(35000.0)
-                    .addEquipment("Life jacket");
+                builder.setModel("Motorboat")
+                       .setMaxSpeed(70)
+                       .setBasePrice(35000)
+                       .addEquipment("Life jacket");
                 break;
+
             case "SAILBOAT":
-                builder.setMaxSpeed(35)
-                    .setBasePrice(50000.0)
-                    .addEquipment("Flare kit");
+                builder.setModel("Sailboat")
+                       .setMaxSpeed(35)
+                       .setBasePrice(50000)
+                       .addEquipment("Flare kit");
                 break;
-            case "JET_SKI":
-                builder.setMaxSpeed(90)
-                    .setBasePrice(12000.0)
-                    .addEquipment("Ski board");
+
+            case "JET SKI":
+                builder.setModel("Jet Ski")
+                       .setMaxSpeed(90)
+                       .setBasePrice(12000)
+                       .addEquipment("Safety equipment");
                 break;
+
             case "AIRPLANE":
-                builder.setMaxSpeed(900)
-                    .setBasePrice(1500000.0)
-                    .addEquipment("Radar");
+                builder.setModel("Airplane")
+                       .setMaxSpeed(900)
+                       .setBasePrice(1500000)
+                       .addEquipment("Radar");
                 break;
-            case "LIGHT_AIRCRAFT":
-                builder.setMaxSpeed(250)
-                    .setBasePrice(180000.0)
-                    .addEquipment("Two parachutes");
+
+            case "LIGHT AIRCRAFT":
+                builder.setModel("Light Aircraft")
+                       .setMaxSpeed(250)
+                       .setBasePrice(180000)
+                       .addEquipment("Parachutes");
                 break;
+
             case "HELICOPTER":
-                builder.setMaxSpeed(260)
-                    .setBasePrice(850000.0)
-                    .addEquipment("Basic drone set");
+                builder.setModel("Helicopter")
+                       .setMaxSpeed(260)
+                       .setBasePrice(850000)
+                       .addEquipment("Drone equipment");
                 break;
+
             default:
-                builder.setMaxSpeed(0)
-                    .setBasePrice(0)
-                    .addEquipment("---");
+                throw new IllegalArgumentException("Invalid model");
         }
 
-        // Construye y retorna el Vehicle resultante
-        return builder1.build();
-
-
+        return builder.build();
     }
 }

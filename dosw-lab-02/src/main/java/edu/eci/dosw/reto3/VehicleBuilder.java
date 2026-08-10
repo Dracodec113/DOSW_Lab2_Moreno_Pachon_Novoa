@@ -1,62 +1,87 @@
-import java.text.DecimalFormat;
+package edu.eci.dosw.reto3;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Class that acts as a vehicle builder according to each vehicle specific conditions.
- */
+public class VehicleBuilder {
 
-enum FamilyType {LAND, WATER, AIR};
-
-public class VehicleBuilder{
+    private String family;
+    private String category;
     private String model;
-    private FamilyType family;
-    private Category category;
     private double maxSpeed;
-    private double iniPrice;
+    private double basePrice;
     private List<String> equipment = new ArrayList<>();
 
-    public VehicleBuilder setPrice(double price){
-        this.iniPrice = price;
-        return this;
-    }
-
-    public VehicleBuilder setModel(String model){
-        this.model = model;
-        return this;
-    }
-
-    public VehicleBuilder setCategory(Category category){
-        this.category = category;
-        return this;
-    }
-
-    public VehicleBuilder setMaxSpeed(double speed){
-        this.maxSpeed = speed;
-    }
-
-    public VehicleBuilder setFamily(FamilyType family){
+    public VehicleBuilder setFamily(String family) {
         this.family = family;
         return this;
     }
 
-    public VehicleBuilder setEquipment(String stuff){
-        this.equipment.add(stuff);
+    public VehicleBuilder setCategory(String category) {
+        this.category = category;
+        return this;
+    }
+
+    public VehicleBuilder setModel(String model) {
+        this.model = model;
+        return this;
+    }
+
+    public VehicleBuilder setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+        return this;
+    }
+
+    public VehicleBuilder setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+        return this;
+    }
+
+    public VehicleBuilder addEquipment(String equipment) {
+        this.equipment.add(equipment);
         return this;
     }
 
     public Vehicle build() {
-        List<String> finalEquipment = new ArrayList<>(category.getDefaultEquipment());
-        finalEquipment.addAll(this.extraEquipment);
 
-        DecimalFormat df = new DecimalFormat("#.0000");
+        double price = calculatePrice();
+        double finalSpeed = calculateSpeed();
 
         return new Vehicle(
-            category,
-            family,
-            model,
-            df.format(category.calculateMaxSpeed(maxSpeed)),
-            df.format(category.calculatePrice(iniPrice)),
-            finalEquipment);
+                family,
+                category,
+                model,
+                finalSpeed,
+                price,
+                new ArrayList<>(equipment)
+        );
+    }
+
+    private double calculatePrice() {
+
+        if (category.equalsIgnoreCase("Luxury")) {
+            return basePrice * 1.6;
+        }
+
+        if (category.equalsIgnoreCase("Used")) {
+            return basePrice * 0.8;
+        }
+
+        return basePrice;
+    }
+
+    private double calculateSpeed() {
+
+    double finalSpeed = maxSpeed;
+
+    if (category.equalsIgnoreCase("Luxury")) {
+        finalSpeed = maxSpeed * 1.4;
+    }
+
+    if (category.equalsIgnoreCase("Used")) {
+        finalSpeed = maxSpeed * 0.8;
+    }
+
+    return Math.round(finalSpeed);
     }
 }
