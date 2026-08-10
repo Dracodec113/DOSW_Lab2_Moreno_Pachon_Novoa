@@ -242,8 +242,43 @@ Add the UML diagram below:
 Describe the branches used by the team:
 
 ```text
-main
-develop
-feature/reto1-...
-feature/reto2-...
+  remotes/origin/main
+
+  remotes/origin/documentation --- Branch used to finish the README.md
+  |_ remotes/origin/documentation_MorenoJeronimo -- Individual Branch used by Jeronimo.
+  
+  remotes/origin/develop --- Stable release development branch
+  
+  -- The structure is the same for each challenge. A main branch, then individual branches for simultaneous workflow.--
+
+  remotes/origin/feature/challenge1
+  |_ remotes/origin/feature/challenge1_MorenoJeronimo
+  |_ remotes/origin/feature/challenge_1_paulaNovoa
+
+  remotes/origin/feature/challenge_2
+  |_ remotes/origin/feature/challenge_2_MorenoJeronimo
+  |_ remotes/origin/feature/challenge_2_paulaNovoa
+
+  remotes/origin/feature/challenge_3
+  |_ remotes/origin/feature/challenge_3_DerlyPachon
+  |_ remotes/origin/feature/challenge3_paulaNovoa
+
+
+  remotes/origin/feature/challenge_4
+  |_remotes/origin/feature/challenge_4_MorenoJeronimo
+
+  remotes/origin/feature/challenge_5
+  |_remotes/origin/feature/challenge_5_DerlyPachon
+  |_remotes/origin/feature/challenge_5_MorenoJeronimo
+  |_remotes/origin/feature/challenge_5_paula-novoa
+
+  remotes/origin/feature/challenge_6
+  |_remotes/origin/feature/challenge_6_MorenoJeronimo
+  |_remotes/origin/feature/challenge_6_paulaNovoa
+
+  remotes/origin/feature/challenge_7
+  |_remotes/origin/feature/challenge_7_DerlyPachon
+
+  remotes/origin/feature/challenge_8
+  
 ```
