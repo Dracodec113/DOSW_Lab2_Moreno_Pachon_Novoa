@@ -25,12 +25,21 @@ public class LightCommandAction implements Command{
             light.setOn(false);
     }
  
-    public boolean pastState() {
+    public void setPastState() {
         if (pastAction) 
             light.setOn(true); 
         else 
             light.setOn(false);
-        
-        return pastAction;
+    }
+
+        public String getName(){
+        if(newAction)
+            return "Turn lights on";
+        else
+            return "Turn lights off";
+    }
+
+    public String getDeviceInvolved(){
+        return "LIGHT";
     }
 }

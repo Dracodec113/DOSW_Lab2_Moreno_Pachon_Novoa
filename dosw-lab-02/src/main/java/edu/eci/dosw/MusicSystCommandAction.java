@@ -25,8 +25,20 @@ public class MusicSystCommandAction implements Command{
         musicSyst.setVolume(value);
     }
  
-    public int pastState() {
+    public void setPastState() {
         musicSyst.setVolume(pastValue);
-        return pastValue;
+    }
+
+    public String getName(){
+        if(newValue>pastValue)
+            return "Turn down the volume";
+        else if (newValue<pastValue)
+            return "Turn up the volume";
+        else
+            return "Maintain the volume";
+    }
+
+    public String getDeviceInvolved(){
+        return "MUSIC_SYSTEM";
     }
 }

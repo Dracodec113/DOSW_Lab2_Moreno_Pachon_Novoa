@@ -25,12 +25,21 @@ public class DoorCommandAction implements Command{
             door.setOpen(false);
     }
  
-    public boolean pastState() {
+    public void setPastState() {
         if (pastAction) 
              door.setOpen(true); 
         else 
             door.setOpen(false);
-        
-        return pastAction;
+    }
+
+    public String getName(){
+        if(newAction)
+            return "Open the door";
+        else
+            return "Close the door";
+    }
+
+    public String getDeviceInvolved(){
+        return "DOOR";
     }
 }

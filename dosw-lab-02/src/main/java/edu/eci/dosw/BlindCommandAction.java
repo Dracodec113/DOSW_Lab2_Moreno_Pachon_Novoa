@@ -26,8 +26,18 @@ public class BlindCommandAction implements Command{
         blind.setPosition(value);
     }
  
-    public int pastState() {
+    public void setPastState() {
         blind.setPosition(pastValue);
-        return pastValue;
+    }
+
+    public String getName(){
+        if(newValue == pastValue)
+            return "Maintain hte same position";
+        else
+            return "Change the position";
+    }
+
+    public String getDeviceInvolved(){
+        return "WINTER_BLIND";
     }
 }
