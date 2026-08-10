@@ -119,7 +119,7 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 
 Document how exchange rates are represented and supplied to the conversion service. The implementation must not apply one shared rate to all currency pairs.
 
-Each pair of currencies is added individually to the map.
+Each pair of currencies is added individually to the `Map`.
 
 ---
 
