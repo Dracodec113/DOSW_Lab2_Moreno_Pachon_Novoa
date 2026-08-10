@@ -109,7 +109,7 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 | Design Pattern Category | Behavioral |
 | Pattern Used | Strategy |
 | Justification | We saw that we had to do multiple similar calculations to calculate the exchange rate. We thought that this looked similar to the strategy design pattern. We had multiple exchange rates, we only needed to choose one. |
-| How It Was Applied | Basically `ExchangeRate` is our interface and `ExchangeRateMap` is our concrete strategy. Finally, through `CurrencyConverter` (the context) the strategy is received and the concrete implementations is never revealed. |
+| How It Was Applied | Basically `ExchangeRate` is our interface and `ExchangeRateMap` is our concrete strategy. Finally, through `CurrencyConverter` (the context), the strategy is received and the concrete implementation is never revealed. |
 
 ### Evidence
 
