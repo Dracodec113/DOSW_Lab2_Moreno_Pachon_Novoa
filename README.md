@@ -37,22 +37,22 @@
 
 | Principle | Application in the Solution |
 |---|---|
-| Single Responsibility | TODO |
-| Open/Closed | TODO |
-| Liskov Substitution | TODO |
-| Interface Segregation | TODO |
-| Dependency Inversion | TODO |
+| Single Responsibility | We abided to this principle by creating multiple independent classes that solved a single part of the problem, or multiple closely associated problems. This can be seen clearly in the `ShoopingCart` class for example, this class manages products, subtotal and checkout. Each one of those is clearly associated thus keeping the principle.|
+| Open/Closed | We can easily extend our code. If a new customer is required we can easily build it using the `DiscountStrategy` interface. We wouldn't need to modify existing classes.|
+| Liskov Substitution | Every implementation of `DiscountStrategy` can easily substitue each other without altering `ShoppingCart` |
+| Interface Segregation | `DiscountStrategy` has a single method, no concrete class is implementing things that it doesn't need.|
+| Dependency Inversion | `ShoppingCart` is tied with `DiscountStrategy`, not a concrete class. Then we use `DiscountFactory` to build it, thus giving the responsibility to a class outside of `ShoppingCart`.  |
 
 #### Polymorphism
 
-TODO: Explain the contracts and interchangeable implementations used in the solution.
+`DiscountStrategy` defines a contract `applyDiscount`. `ShoppingCart` then calls that method without knowing what type of client it is at first, then the client is chosen during execution and the correct object is returned.
 
 #### Encapsulation and Immutability
 
-TODO: Explain how attributes are protected and how product prices remain unchanged.
+We experimented with `records`. Thus `Product` and `CartItem` automatically generates encapsulated attributes, then each attribute that's needed has its own getter and/or setter. `ShoppingCart` for example is only exposed through controlled methods.
 
 ### Evidence
-
+### TO DO
 ![Evidence challenge 1](images/evidenceC1.webp)
 
 ---
@@ -106,18 +106,20 @@ TODO: Explain how attributes are protected and how product prices remain unchang
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
-| Pattern Used | TODO |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Design Pattern Category | Behavioral |
+| Pattern Used | Strategy |
+| Justification | We saw that we had to do multiple similar calculations to calculate the exchange rate. We thought that this looked similar to the strategy design pattern. We had multiple exchange rates, we only needed to choose one. |
+| How It Was Applied | Basically `ExchangeRate` is our interface and `ExchangeRateMap` is our concrete strategy. Finally, through `CurrencyConverter` (the context) the strategy is received and the concrete implementations is never revealed. |
 
 ### Evidence
-
+### TO DO
 ![Evidence challenge 4](images/evidenceC4.webp)
 
 ### Important Note
 
 Document how exchange rates are represented and supplied to the conversion service. The implementation must not apply one shared rate to all currency pairs.
+
+Each pair of currencies is added individually to the map.
 
 ---
 
@@ -144,10 +146,10 @@ Document how exchange rates are represented and supplied to the conversion servi
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
+| Design Pattern Category | Behavioral |
 | Pattern Used | Chain of Responsibility |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Justification | Each ticket has to pass through multiple technicians in order to find the correct one, the code doesn't need to know the order in which te tickets are thrown nor the quantity of available technicians. Chain of responsibility is meant to be used in these cases. |
+| How It Was Applied | `TechnicianHandler` is an abstract class that has the template method `handle(ticket)` and `canHandle(ticket)`. `Technician` is the only concrete class, each technician has its `maxPriority` to be able to create the corresponding chain through `setNext()`. Finally `SupportSystem` sets up the chain and goes through each ticket. |
 
 ### Expected Summary
 
