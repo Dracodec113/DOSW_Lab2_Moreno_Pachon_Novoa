@@ -1,4 +1,4 @@
-package edu.eci.dosw;
+package edu.eci.dosw.reto4;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
