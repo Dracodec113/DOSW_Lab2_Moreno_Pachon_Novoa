@@ -87,14 +87,15 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
-| Pattern Used | TODO |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Design Pattern Category | Creational |
+| Pattern Used | Builder |
+| Justification | The Builder pattern is appropriate because a vehicle can have several characteristics, such as its family, category, price, speed, comfort, and equipment. Creating a vehicle with all these attributes directly could make the construction process complex and difficult to maintain. Builder allows the vehicle to be constructed step by step according to the required configuration. |
+| How It Was Applied | The VehicleBuilder is responsible for progressively configuring and creating a Vehicle object. The VehicleDirector defines the construction process for specific types of vehicles by determining which steps should be performed. This separates the construction logic from the final vehicle object and makes it easier to create different vehicle configurations. |
 
 ### Evidence
 
-![Evidence challenge 3](images/evidenceC3.webp)
+<img width="1342" height="139" alt="5009598f-5ba8-474e-a1f7-706a06a961fc" src="https://github.com/user-attachments/assets/51b5106f-76e3-45e0-ba94-149d1b6c496c" />
+
 
 ---
 
