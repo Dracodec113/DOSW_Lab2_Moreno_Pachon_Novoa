@@ -170,23 +170,25 @@ The output should identify:
 
 ### Design Pattern Documentation
 
+### Design Pattern Documentation
+
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
-| Pattern Used | TODO |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Design Pattern Category | Behavioral |
+| Pattern Used | Command |
+| Justification | The remote control needs to handle different actions for different devices (door, light, music, blind) without knowing the details of each device, and it also needs to support undo actions and keep a history of what was executed. The Command pattern divides the invoker (`RemoteControl`) from the receivers (`Door`, `Light`, `MusicSystem`, `WindowBlind`), letting each action be treated as an object that can be executed, saved, and undone. |
+| How It Was Applied | The `Command` interface defines the contract (`execute()`, `setPastState()`, `getName()`, `getDeviceInvolved()`). Each device has a concrete command class (`DoorCommandAction`, `LightCommandAction`, `MusicSystCommandAction`, `BlindCommandAction`) that implements this interface and holds a reference to its receiver (the device). `RemoteControl` acts as the invoker: it calls `execute()` on any `Command` it receives without knowing its concrete type, logs it in a `History` list, and can call `setPastState()` on a past command to undo it. `Challenge7MagicRemoteControl` acts as the client, creating the receivers and command objects and passing them to the invoker. |
 
 ### Audit Evidence
 
 The final output should make it possible to answer:
 
-- Who executed each action?
-- Which actions were undone?
-- Which user changed each device?
-- What is the complete execution history?
+- Who executed each action? => yes
+- Which actions were undone? => yes
+- Which user changed each device? => yes
+- What is the complete execution history? => yes
 
-![Evidence challenge 7](images/evidenceC7.webp)
+![Evidence challenge 7](images/evidenceC7.png)
 
 ---
 
@@ -196,44 +198,66 @@ The final output should make it possible to answer:
 
 | Class or Interface | Responsibility |
 |---|---|
-| TODO | TODO |
+| **ZooManagement** | Central class responsible for registering animals, visitors, caretakers, and modifying animal data. |
+| **Animal** | Abstract base class representing an animal in the zoo with its characteristics(name, age, diet, health status, habitat) and general behaviors. |
+| **Mammals / Reptiles / Birds** | Concrete implementations of `Animal` representing specific classes with specialized traits |
+| **AnimalBuilder / AnimalDirector** | Construct complex `Animal` instances step-by-step with specified properties. |
+| **AnimalDecorator** | Abstract base decorator class that allows addition of features to an `Animal` instance without modifying its structure. |
+| **FurColorDecorator / OriginDecorator / RarityDecorator / MedicalHistoryDecorator** | Concrete decorators that attach extra properties (e.g., fur color, origin, rarity, medical history) to an `Animal`. |
+| **Caretaker** | Represents zoo staff members and execution of caretaking activities via commands. |
+| **Visitor** | Represents visitors who can select favorite animals and execute visitor interactions using command objects. |
+| **CareTakerCommand** | Interface defining the `execute()` contract for caretaker tasks (feeding, bathing, cleaning habitat). |
+| **FeedAnimalCommand / BatheAnimalCommand / CleanHabitatCommand** | Concrete command implementations of caretaker actions on animals or habitats. |
+| **VisitorCommand** | Interface defining the `execute()` contract for visitor interactions. |
+| **GiveTipToCaretakerCommand / UploadPhotoCommand / VisitorFeedAnimalCommand** | Concrete command implementations of visitor interactions with caretakers or animals. |
+| **HealthState** | State interface defining operations related to modifying an animal's medical description. |
+| **Healthy / Sick / Quarantine** | Concrete state implementations representing the health condition of an animal and defining state-specific behavior. |
+| **Habitat** | Represents the physical habitat associated with animals, including clean state and description. |
 
 #### Relationships
 
 | Source | Relationship | Target | Multiplicity | Explanation |
 |---|---|---|---|---|
-| TODO | TODO | TODO | TODO | TODO |
+| **Mammals** | Inheritance | **Animal** | 1..1 | `Mammals` extends the base abstract class `Animal`. |
+| **Reptiles** | Inheritance | **Animal** | 1..1 | `Reptiles` extends the base abstract class `Animal`. |
+| **Birds** | Inheritance | **Animal** | 1..1 | `Birds` extends the base abstract class `Animal`. |
+| **AnimalDecorator** | Inheritance & Association | **Animal** | 1..1 (Target) | `AnimalDecorator` extends `Animal` and holds a wrapped `Animal` reference to apply dynamic attributes. |
+| **FurColorDecorator / OriginDecorator / RarityDecorator / MedicalHistoryDecorator** | Inheritance | **AnimalDecorator** | 1..1 | Concrete decorators extending `AnimalDecorator`. |
+| **Caretaker** | Association | **Animal** | 0..* | A `Caretaker` is associated with one or more `Animal` instances (`- assignedAnimals`). |
+| **Visitor** | Association | **Animal** | 0..* | A `Visitor` can select multiple `Animal` instances as favorites (`- favoriteAnimals`). |
+| **ZooManagement** | Association | **Visitor** | 0..* | `ZooManagement` maintains a collection of registered visitors (`- visitors`). |
+| **ZooManagement** | Association | **Caretaker** | 0..* | `ZooManagement` maintains a collection of registered caretakers (`- caretakers`). |
+| **ZooManagement** | Association | **Animal** | 0..* | `ZooManagement` manages the list of animals (`- animals`). |
+| **Animal** | Association | **Habitat** | 1..1 | Each `Animal` belongs to a specific `Habitat`. |
+| **Animal** | Association | **HealthState** | 1..1 | An `Animal` maintains a reference to its current `HealthState`. |
+| **Healthy / Sick / Quarantine** | Realization | **HealthState** | 1..1 | Concrete implementations of the `HealthState` interface. |
+| **FeedAnimalCommand / BatheAnimalCommand / CleanHabitatCommand** | Realization | **CareTakerCommand** | 1..1 | Concrete caretaker commands implementing the `CareTakerCommand` interface. |
+| **GiveTipToCaretakerCommand / UploadPhotoCommand / VisitorFeedAnimalCommand** | Realization | **VisitorCommand** | 1..1 | Concrete visitor commands implementing the `VisitorCommand` interface. |
 
 #### SOLID Application
 
 | Principle | Application in the UML Design |
 |---|---|
-| Single Responsibility | TODO |
-| Open/Closed | TODO |
-| Liskov Substitution | TODO |
-| Interface Segregation | TODO |
-| Dependency Inversion | TODO |
+| **Single Responsibility** | Actions are split into distinct classes: each command do something, each type of animal is different, etc... |
+| **Open/Closed** | New animal dynamic attributes can be added via new `AnimalDecorator` subclasses, new actions via new `CareTakerCommand`/`VisitorCommand` classes, or new states via `HealthState` without altering existing code. |
+| **Liskov Substitution** | Any subclass of `Animal` (`Mammals`, `Reptiles`, `Birds`) or any wrapped `AnimalDecorator` can be passed seamlessly wherever an `Animal` instance is needed. |
+| **Interface Segregation** | Commands and actions are decoupled into specific interfaces (`CareTakerCommand`, `VisitorCommand`, `HealthState`) containing only methods relevant to their implementations. |
+| **Dependency Inversion** | Controllers (`ZooManagement`, `Caretaker`, `Visitor`) depend on abstractions (`Animal`, `HealthState`, `CareTakerCommand`, `VisitorCommand`) rather than concrete implementations. |
 
 #### Design Patterns
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO or Not Used |
-| Pattern Used | TODO or Not Used |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| **Design Pattern Category** | Structural / Behavioral / Creational |
+| **Pattern Used** | Decorator, Command, State, Builder, Factory Method |
+| **Justification** | The requirements demand dynamic attributes (fur color, origin, rarity, medical history), state-dependent behaviors (health status), encapsulate action invocations (caretaker/visitor actions), and flexible animal creation. |
+| **How It Was Applied** | **1. Decorator:** `AnimalDecorator` and its subclasses dynamically create `Animal` objects to attach dynamic attributes.<br>**2. Command:** `CareTakerCommand` and `VisitorCommand` develop actions into executable command objects.<br>**3. State:** `HealthState` (`Healthy`, `Sick`, `Quarantine`) create health-based behavior transitions for `Animal`.<br>**4. Builder & Factory Method:** `AnimalBuilder` / `AnimalDirector` build  animal objects step-by-step, and `Mammals`/`Reptiles`/`Birds` instantiate concrete animal types. |
 
 #### Diagram
 
 Add the UML diagram below:
 
-```markdown
-![ECI Zoo UML Class Diagram](diagrams/reto8-zoo-class-diagram.png)
-```
-
-#### Evidence
-
-![Evidence challenge 8](images/evidenceC8.webp)
+![Evidence challenge 8](images/evidenceC8.png)
 
 # Repository Evidence
 
