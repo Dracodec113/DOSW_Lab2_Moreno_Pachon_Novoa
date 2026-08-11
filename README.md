@@ -1,4 +1,4 @@
-<img width="542" height="88" alt="fc90b816-ec48-4779-85a4-0f1b1aaa0b4e" src="https://github.com/user-attachments/assets/6d4cae91-0f28-43bb-8fb4-046d2252c9be" /># DOSW_Lab2_Moreno_Pachon_Novoa
+# DOSW_Lab2_Moreno_Pachon_Novoa
 
 ## SOLID Principles, Design Patterns, UML Class Diagrams, and Advanced Object-Oriented Programming
 
