@@ -63,10 +63,10 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
-| Pattern Used | TODO |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Design Pattern Category | Creational |
+| Pattern Used | Builder |
+| Justification | The Builder pattern is appropriate because a hamburger can have many different combinations of ingredients. Instead of using a large constructor with many parameters, the hamburger can be created step by step, adding only the ingredients selected by the user. |
+| How It Was Applied | A HamburgerBuilder is used to construct the hamburger progressively. The user can select different ingredients such as bread, meat, chicken, cheese, and sauces. Each option is added to the builder, and when the process is finished, the builder creates the final customized Hamburger object. |
 
 ### Evidence
 
