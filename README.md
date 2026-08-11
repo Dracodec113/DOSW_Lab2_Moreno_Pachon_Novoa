@@ -1,4 +1,4 @@
-# DOSW_Lab2_Moreno_Pachon_Novoa
+<img width="542" height="88" alt="fc90b816-ec48-4779-85a4-0f1b1aaa0b4e" src="https://github.com/user-attachments/assets/6d4cae91-0f28-43bb-8fb4-046d2252c9be" /># DOSW_Lab2_Moreno_Pachon_Novoa
 
 ## SOLID Principles, Design Patterns, UML Class Diagrams, and Advanced Object-Oriented Programming
 
@@ -127,14 +127,15 @@ Each pair of currencies is added individually to the `Map`.
 
 | Item | Team Explanation |
 |---|---|
-| Design Pattern Category | TODO |
-| Pattern Used | TODO |
-| Justification | TODO |
-| How It Was Applied | TODO |
+| Design Pattern Category | Structural |
+| Pattern Used | Decorator |
+| Justification | The Decorator pattern is appropriate because the system must allow customers to add different ingredients to a basic coffee without modifying the original coffee class. It also allows several ingredients to be combined dynamically, with each ingredient adding its own description and cost.|
+| How It Was Applied | A Coffee interface defines the common behavior of all coffees and decorators. BasicCoffee represents the original coffee, while CoffeeDecorator provides the base structure for additional ingredients. Specific decorators such as MilkDecorator, ChocolateDecorator, CaramelDecorator, CreamDecorator, MintDecorator, and CustomIngredientDecorator wrap a coffee and add their own description and price. This allows several decorators to be combined to create a customized coffee. |
 
 ### Evidence
 
-![Evidence challenge 5](images/evidenceC5.webp)
+<img width="542" height="88" alt="fc90b816-ec48-4779-85a4-0f1b1aaa0b4e" src="https://github.com/user-attachments/assets/328bdfeb-becf-4050-ab66-b99f98a8900c" />
+
 
 ---
 
