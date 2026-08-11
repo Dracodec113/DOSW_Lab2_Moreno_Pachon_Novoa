@@ -70,16 +70,14 @@ We experimented with `records`. Thus `Product` and `CartItem` automatically gene
 
 ### Evidence
 
-- Screenshot or console output showing user selections.
+- Final customized hamburger generated
 
-![Evidence challenge 2.1](images/evidenceC21.webp)
+<img width="1338" height="77" alt="90b57a15-7a3d-4d33-ab09-7247d8f12054" src="https://github.com/user-attachments/assets/9571a828-e2f1-4375-a55a-c557732050a8" />
 
-- Screenshot or console output showing the final hamburger.
 
-![Evidence challenge 2](images/evidenceC22.webp)
+- Test execution showing that the hamburger builder functionality works correctly.
 
-- Relevant tests.
-- UML or class relationship diagram, when applicable.
+<img width="1580" height="266" alt="27ff9d27-6f8b-4477-8250-4b831637855e" src="https://github.com/user-attachments/assets/b3165830-7425-46db-b15f-75c972366465" />
 
 ---
 
