@@ -1,0 +1,46 @@
+package edu.eci.dosw.reto7;
+/**
+ * Class that manage the possible door actions
+ */
+
+public class DoorCommandAction implements Command{
+    private Door door;
+    private boolean pastAction;
+    private boolean newAction;
+ 
+    public DoorCommandAction(Door door, boolean newState) {
+        this.door = door;
+        this.newAction = newState;
+    }
+ 
+    public void execute() {
+        changeState();
+    }
+ 
+    public void changeState() {
+        this.pastAction = door.isOpen();
+
+        if (newAction) 
+            door.setOpen(true); 
+        else 
+            door.setOpen(false);
+    }
+ 
+    public void setPastState() {
+        if (pastAction) 
+             door.setOpen(true); 
+        else 
+            door.setOpen(false);
+    }
+
+    public String getName(){
+        if(newAction)
+            return "Open the door";
+        else
+            return "Close the door";
+    }
+
+    public String getDeviceInvolved(){
+        return "DOOR";
+    }
+}
